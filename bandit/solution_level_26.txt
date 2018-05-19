@@ -1,0 +1,38 @@
+Need to resize the terminal window you are connecting from to a few characters of height so we
+can enter into scrolling mode!!
+
+After that hit 'v' to enter vi mode (/usr/bin/vi will be forked)
+
+in vim:
+:set shell=/bin/bash
+!/bin/bash
+
+Voila. We broke out of 'more'. 
+
+Now we can resize the terminal back.
+
+
+
+
+
+
+
+bandit26@bandit:~$ ls
+README.txt  text.txt
+bandit26@bandit:~$ cat README.txt
+Congratulations on solving the last level of this game!
+
+At this moment, there are no more levels to play in this game. However, we are constantly working
+on new levels and will most likely expand this game with more levels soon.
+Keep an eye out for an announcement on our usual communication channels!
+In the meantime, you could play some of our other wargames.
+
+If you have an idea for an awesome new level, please let us know!
+bandit26@bandit:~$ cat text.txt
+  _                     _ _ _   ___   __
+ | |                   | (_) | |__ \ / /
+ | |__   __ _ _ __   __| |_| |_   ) / /_
+ | '_ \ / _` | '_ \ / _` | | __| / / '_ \
+ | |_) | (_| | | | | (_| | | |_ / /| (_) |
+ |_.__/ \__,_|_| |_|\__,_|_|\__|____\___/
+bandit26@bandit:~$
