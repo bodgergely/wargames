@@ -30,3 +30,10 @@ echo "run" >> gdbscript
 echo "si" >> gdbscript
 echo "ni" >> gdbscript
 alias gdb_asm='gdb --command gdbscript --args'
+# end of gdbscript
+alias ls='ls -lha'
+
+
+
+
+
