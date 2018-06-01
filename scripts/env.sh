@@ -23,15 +23,14 @@ echo "map f y" >> vimrc
 # creating gdbscript
 touch gdbscript
 echo "source /usr/local/peda/peda.py" >> gdbscript
-echo "pset option ansicolor off" >> gdbscript
-echo "set prompt (gdb-peda) " >> gdbscript
 echo "set disassembly-flavor intel" >> gdbscript
+echo "set pagination off" >> gdbscript
 echo "b main" >> gdbscript
-echo "layout asm" >> gdbscript
-echo "focus asm" >> gdbscript
-echo "run" >> gdbscript
-echo "si" >> gdbscript
-echo "ni" >> gdbscript
+#echo "layout asm" >> gdbscript
+#echo "focus asm" >> gdbscript
+#echo "run" >> gdbscript
+#echo "si" >> gdbscript
+#echo "ni" >> gdbscript
 alias debug='gdb --command gdbscript --args'
 # end of gdbscript
 alias ls='ls -lha'
