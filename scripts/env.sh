@@ -22,9 +22,9 @@ echo "map nn <S-$>" >> vimrc
 echo "map f y" >> vimrc
 # creating gdbscript
 touch gdbscript
-#echo "source /usr/local/peda/peda.py" >> gdbscript
+echo "source /usr/local/peda/peda.py" >> gdbscript
 echo "set disassembly-flavor intel" >> gdbscript
-echo "source /usr/local/pwndbg/gdbinit.py" >> gdbscript
+#echo "source /usr/local/pwndbg/gdbinit.py" >> gdbscript
 echo "b main" >> gdbscript
 #echo "set pagination off" >> gdbscript
 #echo "layout asm" >> gdbscript
