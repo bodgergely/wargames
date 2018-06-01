@@ -22,6 +22,9 @@ echo "map nn <S-$>" >> vimrc
 echo "map f y" >> vimrc
 # creating gdbscript
 touch gdbscript
+echo "source /usr/local/peda/peda.py" >> gdbscript
+echo "pset option ansicolor off" >> gdbscript
+echo "set prompt (gdb)" >> gdbscript
 echo "set disassembly-flavor intel" >> gdbscript
 echo "b main" >> gdbscript
 echo "layout asm" >> gdbscript
