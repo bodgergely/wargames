@@ -24,7 +24,7 @@ echo "map f y" >> vimrc
 touch gdbscript
 echo "source /usr/local/peda/peda.py" >> gdbscript
 echo "pset option ansicolor off" >> gdbscript
-echo "set prompt (gdb)" >> gdbscript
+echo "set prompt (gdb-peda) " >> gdbscript
 echo "set disassembly-flavor intel" >> gdbscript
 echo "b main" >> gdbscript
 echo "layout asm" >> gdbscript
