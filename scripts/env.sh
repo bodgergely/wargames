@@ -27,9 +27,12 @@ echo "set disassembly-flavor intel" >> gdbscript
 echo "source /usr/local/peda/peda.py" >> gdbscript
 echo "#source /usr/local/pwndbg/gdbinit.py" >> gdbscript
 echo "b main" >> gdbscript
+touch gdbvanilla
+echo "set disassembly-flavor intel" >> gdbvanilla
+echo "b main" >> gdbvanilla
+echo "layout asm" >> gdbvanilla
+echo "focus asm" >> gdbvanilla
 #echo "set pagination off" >> gdbscript
-#echo "layout asm" >> gdbscript
-#echo "focus asm" >> gdbscript
 #echo "run" >> gdbscript
 #echo "si" >> gdbscript
 #echo "ni" >> gdbscript
