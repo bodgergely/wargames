@@ -2,6 +2,7 @@ export TEMPDIR=`mktemp -d` && cd $TEMPDIR
 touch bashrc
 echo "alias ls='ls -lha'" >> bashrc
 echo "alias vim='vim -u vimrc'" >> bashrc
+echo "alias debug='gdb --command gdbscript --args'" >> bashrc
 source bashrc
 #creating vimrc
 touch vimrc
@@ -32,9 +33,7 @@ echo "b main" >> gdbscript
 #echo "run" >> gdbscript
 #echo "si" >> gdbscript
 #echo "ni" >> gdbscript
-alias debug='gdb --command gdbscript --args'
 # end of gdbscript
-alias ls='ls -lha'
 
 
 
