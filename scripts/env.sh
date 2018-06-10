@@ -3,6 +3,7 @@ touch bashrc
 echo "alias ls='ls -lha'" >> bashrc
 echo "alias vim='vim -u vimrc'" >> bashrc
 echo "alias debug='gdb --command gdbscript --args'" >> bashrc
+echo "alias debugvanilla='gdb --command gdbvanilla --args'" >> bashrc
 source bashrc
 #creating vimrc
 touch vimrc
