@@ -1,0 +1,23 @@
+IRC - overthewire #wargames
+
+
+<geri> Is it possible to stay in the shell interactively in vortex1? I know there is a hint to look at how bash handles EOF.
+<b0bb> so one of you tell morla and then let us consider this mystery solved
+<b0bb> lets also agree that nobody likes asm pastes, not even gizmore
+<geri> I an solve it when "-i" is passed...
+<b0bb> yes you can keep it interactive
+<gizmore> actually i tried to read it but did not understand the mapping ASM => machinecode.... then i gave up
+<geri> ok sorry about the asm :)
+<b0bb> its pushing a NULL and two strings and calling a function
+<b0bb> so 3 args to a function
+<b0bb> geri, there are a few tricks to do what you are asking to do, and the EOF hint is everything you need
+<geri> the here document?
+<b0bb> not heredoc
+<b0bb> http://www.pixelbeat.org/programming/stdio_buffering/
+<geri> I have struggled with this for a day now, I really hate tty
+<geri> thanks!
+<geri> good to have a hint, thanks b0bb
+<b0bb> sure
+<b0bb> its good to read the whole thing but if you are lazy and just scan it, what you need is in there
+<b0bb> good luck
+* SynicalSpghtti has quit (Ping timeout: 121 seconds)
