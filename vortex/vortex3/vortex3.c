@@ -25,7 +25,7 @@ int main(int argc, char **argv)
             exit(2);
 
     tmp = *lpp;
-    **lpp = (unsigned long) &buf;
+    **lpp = (unsigned long) &buf;       // this is where we assign the return address to our shellcode I guess
     // *lpp = tmp; // Fix suggested by Michael Weissbacher @mweissbacher 2013-06-30
 
     exit(0);
