@@ -16,6 +16,9 @@ int main(int argc, char **argv)
     unsigned long **lpp = &lp, *tmp;
     char buf[128];
 
+//    *(unsigned int*)(0x08048326) = 0xdeadbeef;
+//    getchar();
+
     if (argc != 2)
             exit(1);
 
