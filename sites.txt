@@ -1,0 +1,3 @@
+but if you like binary exploitation check out pwnable.kr pwnable.tw w3challs.com
+thanks, I will try the pwnable.kr, w3challs
+<b0bb> yeah those are a better education of binary exploitation
