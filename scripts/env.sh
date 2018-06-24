@@ -22,6 +22,10 @@ echo "imap kj <esc>" >> vimrc
 echo "map vv 0" >> vimrc
 echo "map nn <S-$>" >> vimrc
 echo "map f y" >> vimrc
+echo "set tabstop=4" >> vimrc
+echo "set shiftwidth=4" >> vimrc
+echo "set expandtab" >> vimrc
+
 # creating gdbscript
 touch gdbscript
 echo "set disassembly-flavor intel" >> gdbscript
