@@ -29,6 +29,8 @@ echo "set expandtab" >> vimrc
 # creating gdbscript
 touch gdbscript
 echo "set disassembly-flavor intel" >> gdbscript
+echo "set detach-on-fork off" >> gdbscript
+echo "set follow-fork-mode child" >> gdbscript
 echo "source /usr/local/peda/peda.py" >> gdbscript
 echo "#source /usr/local/pwndbg/gdbinit.py" >> gdbscript
 echo "b main" >> gdbscript
