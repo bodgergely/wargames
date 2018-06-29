@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int main();
+void login();
+
 void login(){
 	int passcode1;
 	int passcode2;
 
+    printf("STAGE 1 passcode1: %d, passcode2: %d\n", passcode1, passcode2);
 	printf("enter passcode1 : ");
 	scanf("%d", passcode1);
 	fflush(stdin);
@@ -14,6 +18,11 @@ void login(){
         scanf("%d", passcode2);
 
 	printf("checking...\n");
+    printf("STAGE 2 passcode1: %d, passcode2: %d\n", passcode1, passcode2);
+    printf("exit at: %p, main at: %p, login at: %p\n", exit, main, login);
+    if(passcode2==13371337) {
+        printf("We got the match on passcode2!\n");
+    }
 	if(passcode1==338150 && passcode2==13371337){
                 printf("Login OK!\n");
                 system("/bin/cat flag");

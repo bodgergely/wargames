@@ -14,12 +14,12 @@ int main(int argc, char* argv[], char* envp[]){
 	// argv
     printf("argc: %d\n", argc);
 	if(argc != 100) return 0;
-    char pwn = *argv['A'];
-    printf("argv['A']: %u\n", (unsigned int)pwn);
+  //  char pwn = *argv['A'];
+ //   printf("argv['A']: %u\n", (unsigned int)pwn);
 	if(strcmp(argv['A'],"\x00")) 
         return 0;
 
-    printf("argv['B']: %u\n", *(unsigned int*)argv['A']);
+//    printf("argv['B']: %u\n", *(unsigned int*)argv['A']);
 	if(strcmp(argv['B'],"\x20\x0a\x0d")) 
         return 0;
 	printf("Stage 1 clear!\n");	
