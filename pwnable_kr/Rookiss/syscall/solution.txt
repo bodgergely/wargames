@@ -1,0 +1,67 @@
+See page 24 in: A Guide to Kernel Exploitation Attacking the Core.pdf.
+
+Vulnerability:
+
+Syscall which copies our data to the location where we want does not do any checking on the supplied addresses.
+
+We could overwrite the return address on the kernel stack with the address of our user land defined function which would contain the 'malicious' code (to read the contents of /root/flag).
+Not sure how to figure out that address of the stack...
+
+Another option is to look for some kernel memory that is fixed at compile time and writable and is useful for us.
+
+
+Or maybe the syscall table is writable! The syscall.c file says that thessycall table has been remapped to be writable. So basically we could just register our own function address I guess.
+
+
+0x8000e348(syscall table start) + 223(SYS_NR)*4(ptr size) is the location.
+
+
+1)Remapping the whole code section of our application code
+2)Calculate offset of our exploit code (read_file) and add it to the base address f the remapped executable code section and overwrite the syscall table entry 223 with that address
+3) We can not use syscalls from kernel mode so we need to use the kernel functions.
+We should lookup the kernel addresses of these functions and use their addresses in our application code to invoke them.
+
+
+
+open: (linux/fs/open.c)
+-----
+
+long do_sys_open(int dfd, const char __user *filename, int flags, umode_t mode)
+
+sudo cat /proc/kallsyms | grep do_sys_open
+
+
+
+read: (linux/fs/read_write.c)
+-----
+
+ssize_t ksys_read(unsigned int fd, char __user *buf, size_t count)
+
+sudo cat /proc/kallsyms | grep ksys_read
+
+
+
+write: (linux/fs/read_write.c)
+------
+
+ssize_t ksys_write(unsigned int fd, const char __user *buf, size_t count)
+
+sudo cat /proc/kallsyms | grep ksys_write
+
+
+
+
+
+GDB
+===
+
+- Run the kernel on qemu with gdb server (-s) enabled 
+- Connect with gdb (gdb ~/busybox/build/linux/vmlinux) from the host machine
+./gdb vmlinux
+(gdb) target remote localhost:1234
+(gdb) b do_fast_syscall_32
+(gdb) b /home/geri/workspace/linux/arch/x86/entry/common.c:320 if nr == 223
+(gdb) b *0x21232539     // read_file - instr after the memset
+
+
+
