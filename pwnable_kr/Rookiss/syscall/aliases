@@ -1,0 +1,2 @@
+alias e='vim exploit.c'
+alias cop='cat ./exploit.c | cs'

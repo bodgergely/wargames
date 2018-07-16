@@ -62,6 +62,11 @@ GDB
 (gdb) b do_fast_syscall_32
 (gdb) b /home/geri/workspace/linux/arch/x86/entry/common.c:320 if nr == 223
 (gdb) b *0x21232539     // read_file - instr after the memset
-
+(gdb) b do_sys_open
+(gdb) b *0xc11920f0      // do_filp_open
+(gdb) b *0xc11a1bfb      // link_path_walk
+(gdb) b *0xc11a0917
+(gdb) b *0xc11a05ff
+(gdb) b *0xc119e9b5
 
 
