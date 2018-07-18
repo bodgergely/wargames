@@ -38,6 +38,7 @@ read: (linux/fs/read_write.c)
 ssize_t ksys_read(unsigned int fd, char __user *buf, size_t count)
 
 sudo cat /proc/kallsyms | grep ksys_read
+sudo cat /proc/kallsyms | grep __se_sys_read
 
 
 
@@ -47,6 +48,7 @@ write: (linux/fs/read_write.c)
 ssize_t ksys_write(unsigned int fd, const char __user *buf, size_t count)
 
 sudo cat /proc/kallsyms | grep ksys_write
+sudo cat /proc/kallsyms | grep __se_sys_write
 
 
 
@@ -60,6 +62,7 @@ GDB
 ./gdb vmlinux
 (gdb) target remote localhost:1234
 (gdb) b do_fast_syscall_32
+(gdb) b __se_sys_openat     // first function called by the syscall handler to open file
 (gdb) b /home/geri/workspace/linux/arch/x86/entry/common.c:320 if nr == 223
 (gdb) b *0x21232539     // read_file - instr after the memset
 (gdb) b do_sys_open
@@ -68,5 +71,41 @@ GDB
 (gdb) b *0xc11a0917
 (gdb) b *0xc11a05ff
 (gdb) b *0xc119e9b5
+(gdb) b inode_permission
+(gdb) b generic_permission  // fs/namei.c
+
+
+Modifying the credentials for the current process approach
+==========================================================
+
+After installing into the sys_call_table our callback function - the callback function could change the credentials for our process?
+
+see: linux/kernel/cred.c
+
+
+1) struct cred *prepare_creds(void) or struct cred *cred_alloc_blank(void)
+2) int commit_creds(struct cred *new)   // will install the supplied struct cred* into the current process
+
+
+8003f9f8 T cred_alloc_blank
+8003f44c T prepare_creds
+8003f56c T commit_creds
+
+
+Let's try this now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
