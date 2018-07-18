@@ -86,10 +86,11 @@ see: linux/kernel/cred.c
 1) struct cred *prepare_creds(void) or struct cred *cred_alloc_blank(void)
 2) int commit_creds(struct cred *new)   // will install the supplied struct cred* into the current process
 
+(x86 kernel addresses below)
 
-8003f9f8 T cred_alloc_blank
-8003f44c T prepare_creds
-8003f56c T commit_creds
+c1072320 T cred_alloc_blank
+c10720e0 T prepare_creds
+c1071ed0 T commit_creds
 
 
 Let's try this now.
