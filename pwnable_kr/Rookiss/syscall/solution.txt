@@ -83,17 +83,30 @@ After installing into the sys_call_table our callback function - the callback fu
 see: linux/kernel/cred.c
 
 
-1) struct cred *prepare_creds(void) or struct cred *cred_alloc_blank(void)
+1) struct cred *prepare_creds(void)
 2) int commit_creds(struct cred *new)   // will install the supplied struct cred* into the current process
 
 (x86 kernel addresses below)
 
-c1072320 T cred_alloc_blank
 c10720e0 T prepare_creds
 c1071ed0 T commit_creds
 
 
 Let's try this now.
+
+This worked!!!!
+Look at exploit_arm.c
+
+Needs around 64 bytes to store the flag data.
+
+Run:
+
+./exploit 555950370
+
+
+Flag: Congratz!! addr_limit looks quite IMPORTANT now... huh?
+
+
 
 
 
