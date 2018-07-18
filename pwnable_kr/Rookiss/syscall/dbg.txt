@@ -1,0 +1,79 @@
+
+ >│0x21232553      sbb    ecx,eax                                                                      │
+   │0x21232555      call   eax                                                                          │
+   │0x21232557      mov    DWORD PTR [ebp-0x1c],eax                                                     │
+   │0x2123255a      mov    eax,DWORD PTR [ebp-0x1c]                                                     │
+   │0x2123255d      add    esp,0x1c                                                                     │
+   │0x21232560      pop    ebx                                                                          │
+   │0x21232561      pop    esi                                                                          │
+   │0x21232562      pop    edi                                                                          │
+   │0x21232563      pop    ebp                                                                          │
+   │0x21232564      ret                                                                                 │
+   │0x21232565      push   ebp                                                                          │
+   │0x21232566      mov    ebp,esp                                                                      │
+   │0x21232568      sub    esp,0xb8                                                                     │
+   │0x2123256e      call   0x21232894                                                                   │
+   │0x21232573      add    eax,0x1939                                                                   │
+   │0x21232578      mov    eax,DWORD PTR [ebp+0x8]                                                      │
+   │0x2123257b      mov    DWORD PTR [ebp-0xac],eax                                                     │
+   │0x21232581      mov    eax,DWORD PTR [ebp+0xc]                                                      │
+   │0x21232584      mov    DWORD PTR [ebp-0xb0],eax                                                     │
+   │0x2123258a      mov    eax,gs:0x14                                                                  │
+   │0x21232590      mov    DWORD PTR [ebp-0xc],eax                                                      │
+   │0x21232593      xor    eax,eax                                                                      │
+   │0x21232595      mov    DWORD PTR [ebp-0x98],0x0                                                     │
+   │0x2123259f      mov    DWORD PTR [ebp-0x9c],0x0                                                     │
+   │0x212325a9      jmp    0x212325c3                                                                   │
+   │0x212325ab      lea    edx,[ebp-0x8c]                                                               │
+   │0x212325b1      mov    eax,DWORD PTR [ebp-0x9c]                                                     │
+   │0x212325b7      add    eax,edx                                                                      │
+   │0x212325b9      mov    BYTE PTR [eax],0x0                                                           │
+   │0x212325bc      add    DWORD PTR [ebp-0x9c],0x1                                                     │
+   │0x212325c3      mov    eax,DWORD PTR [ebp-0x9c]                                                     │
+   │0x212325c9      cmp    eax,0x7f                                                                     │
+   │0x212325cc      jbe    0x212325ab                         
+
+
+
+
+
+
+
+
+
+
+
+
+  >│0x21232545      jne    0x21232553                                                                   │
+   │0x21232547      mov    edi,DWORD PTR [ebp+0x10]                                                     │
+   │0x2123254a      mov    ebx,eax                                                                      │
+   │0x2123254c      mov    ecx,esi                                                                      │
+   │0x2123254e      mov    edx,edi                                                                      │
+   │0x21232550      mov    eax,0xc1195130                                                               │
+   │0x21232555      call   eax                                                                          │
+   │0x21232557      mov    DWORD PTR [ebp-0x1c],eax                                                     │
+   │0x2123255a      mov    eax,DWORD PTR [ebp-0x1c]                                                     │
+   │0x2123255d      add    esp,0x1c                                                                     │
+   │0x21232560      pop    ebx                                                                          │
+   │0x21232561      pop    esi                                                                          │
+   │0x21232562      pop    edi                                                                          │
+   │0x21232563      pop    ebp                                                                          │
+   │0x21232564      ret                                                                                 │
+   │0x21232565      push   ebp                                                                          │
+   │0x21232566      mov    ebp,esp                                                                      │
+   │0x21232568      sub    esp,0xb8                                                                     │
+   │0x2123256e      call   0x21232894                                                                   │
+   │0x21232573      add    eax,0x1939                                                                   │
+   │0x21232578      mov    eax,DWORD PTR [ebp+0x8]                                                      │
+   │0x2123257b      mov    DWORD PTR [ebp-0xac],eax                                                     │
+   │0x21232581      mov    eax,DWORD PTR [ebp+0xc]                                                      │
+   │0x21232584      mov    DWORD PTR [ebp-0xb0],eax                                                     │
+   │0x2123258a      mov    eax,gs:0x14                                                                  │
+   │0x21232590      mov    DWORD PTR [ebp-0xc],eax                                                      │
+   │0x21232593      xor    eax,eax                                                                      │
+   │0x21232595      mov    DWORD PTR [ebp-0x98],0x0                                                     │
+   │0x2123259f      mov    DWORD PTR [ebp-0x9c],0x0                                                     │
+   │0x212325a9      jmp    0x212325c3                                                                   │
+   │0x212325ab      lea    edx,[ebp-0x8c]                                                               │
+   │0x212325b1      mov    eax,DWORD PTR [ebp-0x9c]                                                     │
+   │0x212325b7      add    eax,edx                  

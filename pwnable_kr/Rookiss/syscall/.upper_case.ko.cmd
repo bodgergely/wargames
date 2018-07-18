@@ -1,0 +1,1 @@
+cmd_/home/geri/workspace/hacking/wargames/pwnable_kr/syscall/upper_case.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/geri/workspace/hacking/wargames/pwnable_kr/syscall/upper_case.ko /home/geri/workspace/hacking/wargames/pwnable_kr/syscall/upper_case.o /home/geri/workspace/hacking/wargames/pwnable_kr/syscall/upper_case.mod.o ;  true

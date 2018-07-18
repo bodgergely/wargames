@@ -1,0 +1,33 @@
+geri@geri-Lubuntu32:~/workspace/pwnable/syscall$ ./exploit 555950372
+Want to mmap function to: 0x21232124
+func got mapped to: 0x21232000
+
+[  842.123441] BUG: unable to handle kernel paging request at 53e58955
+[  842.124680] *pde = 00000000
+[  842.125010] Oops: 0000 [#1] SMP
+[  842.125322] Modules linked in:
+[  842.125747] CPU: 0 PID: 2114 Comm: exploit Not tainted 4.17.0-rc4+ #1
+[  842.126102] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.10.2-1ubuntu1 04/01/2014
+[  842.126869] EIP: 0x53e58955
+[  842.127013] EFLAGS: 00000202 CPU: 0
+[  842.127183] EAX: 53e58955 EBX: f54d1fb4 ECX: deadbeef EDX: ffffffff
+[  842.127446] ESI: b7fa7c15 EDI: f4003f00 EBP: f54d1fac ESP: f54d1f84
+[  842.127697]  DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068
+[  842.127902] CR0: 80050033 CR2: 53e58955 CR3: 3400c000 CR4: 00000690
+[  842.128192] Call Trace:
+[  842.128915]  ? do_fast_syscall_32+0x75/0x1c0
+[  842.129246]  entry_SYSENTER_32+0x4e/0x7c
+[  842.129550] EIP: 0xb7fa7c15
+[  842.129672] EFLAGS: 00000292 CPU: 0
+[  842.129809] EAX: ffffffda EBX: 004ebb80 ECX: deadbeef EDX: 004eb7c9
+[  842.130044] ESI: 21232124 EDI: 004ecfb4 EBP: bff87a88 ESP: bff879fc
+[  842.130279]  DS: 007b ES: 007b FS: 0000 GS: 0033 SS: 007b
+[  842.130571] Code:  Bad RIP value.
+[  842.130832] EIP: 0x53e58955 SS:ESP: 0068:f54d1f84
+[  842.131054] CR2: 0000000053e58955
+[  842.132147] ---[ end trace ebca3d0a9b98c8a9 ]---
+Killed
+geri@geri-Lubuntu32:~/workspace/pwnable/syscall$
+
+
+
