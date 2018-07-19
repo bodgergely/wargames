@@ -75,7 +75,7 @@ GDB
 (gdb) b generic_permission  // fs/namei.c
 
 
-Modifying the credentials for the current process approach
+Modifying the credentials for the current process approach (WORKS!!!)
 ==========================================================
 
 After installing into the sys_call_table our callback function - the callback function could change the credentials for our process?
@@ -91,6 +91,7 @@ see: linux/kernel/cred.c
 c10720e0 T prepare_creds
 c1071ed0 T commit_creds
 
+Also overwrite the fields(linux/include/cred.h) the allocated cred structure we got by prepare_cred with the id 0 (root id). First field is usage count then the next 8 u32 fields are id fields. Overwrite them with 0.
 
 Let's try this now.
 
@@ -105,8 +106,6 @@ Run:
 
 
 Flag: Congratz!! addr_limit looks quite IMPORTANT now... huh?
-
-
 
 
 
