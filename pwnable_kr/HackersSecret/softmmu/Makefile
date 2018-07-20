@@ -1,4 +1,5 @@
-obj-m := soft.o softmmu.o_shipped
+obj-m := softmmu.o
+softmmu-objs := softmmu.o_shipped
 
 MAKE_FLAG="--debug=v"
 
