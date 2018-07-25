@@ -101,6 +101,10 @@ static int mmuinit(void)
         return -1;
     }
     proc_entry->proc_fops = &mmu_fops;
+
+    printk("[softmmu] - mmu_read at: %p", mmu_read);
+    printk("[softmmu] - mmu_write at: %p", mmu_write);
+
     return 0;
 }
 
