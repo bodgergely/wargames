@@ -30,13 +30,14 @@ static const struct file_operations mmu_fops = {
 
 static int pte_callback(pte_t* pte, u32 addr, u32 end, struct mmu_walk* walk)
 {
-    printk("[softmmu] - pte callback for virt addr: %p: pte entry: %p, contains: %p, at virt addr: %p\n", addr, pte, *pte);
+    printk("[softmmu] - pte callback for virt addr: %p: pte entry: %p, contains: %p\n", addr, pte, *pte);
 }
 
 static int page_walk(u32 vaddr)
 {
     struct mm_struct* mm = current->mm;
-    struct mm_walk memwalk;
+    struct mm_walk memwalk;  // mm_walk in include/linux/mm.h
+    memset(&memwalk, 0, sizeof(memwalk));
     memwalk.mm = mm;
     memwalk.pte_entry = &pte_callback;
     return walk_page_range(vaddr, vaddr+4096, &memwalk);
