@@ -7,6 +7,15 @@
 #include <linux/syscalls.h>
 #include <linux/proc_fs.h>
 
+
+/*
+
+   CONFIG_HIGHMEM64G should be enabled in kernel config!
+   That will enable PAE.
+
+   */
+
+
 typedef unsigned long long u64;
 //typedef unsigned int u32;
 
@@ -43,6 +52,44 @@ static int page_walk(u32 vaddr)
     return walk_page_range(vaddr, vaddr+4096, &memwalk);
 } 
 
+/*
+static u32 mmu_walk_ass(u32 vaddr)
+{
+    char* pgdp = (char*)(current->mm->pgd);
+    
+    u32 pgd = *(u32*)(pgdp + ((vaddr >> 0x1e)*8));
+    if(!((*(char*)&pgd) & 0x1)) {
+        printk("PAE entry not present.\n");
+        return NULL;
+    }
+
+    u32 idx = (vaddr & 0x3fe00000) >> 0x12;
+    u32 pmd = *((u32*)(idx + (pgd & 0xfffff000) - 0x40000000));
+    if(!((*(char*)&pmd) & 0x1)) {
+        printk("PD64 entry not present.\n");
+        return NULL;
+    }
+    if(*(char*)&pmd == 0x80) {
+        printk("2MB page.\n");
+        return NULL;
+    }
+
+    u32 pve = (pmd & 0xfffff000);
+    pve = pve + 0xc0000000;
+    
+    // get_pte_entry
+    u32 bla = vaddr & 0x1ff0000;
+    bla = bla >> 0xc;
+    u32 pte = *(u32*)(pve + bla*8);
+    if(!((*(char*)&pte) & 0x1)) {
+        printk("PTE entry not present.\n");
+    }
+    printk("Virt: %p is phys: %p\n", vaddr, pte);
+    return pte;
+
+}
+*/
+
 static u32 mmu_walk(u32 vaddr)
 {
     struct task_struct* proc = current;
@@ -58,8 +105,8 @@ static u32 mmu_walk(u32 vaddr)
         printk("[softmmu] - PGD not present of addr: %p\n", vaddr);
         goto out;
     }
-	pud = pud_offset(pgd, vaddr);
-    if (pud_none_or_clear_bad(pud)) {
+    pud = pud_offset(pgd, vaddr);
+    if (pud_none(*pud)) {
         printk("[softmmu] - PUD not present of addr: %p\n", vaddr);
         goto out;
     }
@@ -77,6 +124,7 @@ static u32 mmu_walk(u32 vaddr)
     pte = *ptep;
 
     printk("Phys page of virt: %p is  at %p\n", (void*)vaddr, pte.pte);
+
     return pte.pte;
 out:
    return NULL; 
@@ -92,9 +140,10 @@ static ssize_t mmu_read(struct file *file, char __user *buf, size_t count,
    u32 offset = virt_addr & 0xfff;
    u32 phys_addr = phys_page + offset;
    printk("[softmmu] - Virt addr: (%p) ---> Phys address (%p)\n", virt_addr, phys_addr);
-   if( (phys_addr & 0xfff) != offset) {
-       printk("[softmmu] - Phys offset not equal to virt offset(%x) - BUG\n", offset);
-   }
+   //if( (phys_addr & 0xfff) != offset) {
+   //    printk("[softmmu] - Phys offset not equal to virt offset(%x) - BUG\n", offset);
+//   }
+// mmu_walk_ass(virt_page);
    page_walk(virt_page);
    return 4;
 }
