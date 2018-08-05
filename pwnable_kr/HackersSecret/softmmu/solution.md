@@ -133,7 +133,13 @@ https://lists.ubuntu.com/archives/kernel-team/2016-May/077178.html
 +KBUILD_CPPFLAGS += $(call cc-option, -fno-pie)
 
 
+## Compile kernel module softmmu
 
+We only get the object file for softmmu. We need to link it against our kernel. See the Makefile how it is done.
+
+https://www.linuxquestions.org/questions/linux-newbie-8/how-to-link-a-static-library-to-a-kernel-module-587406/
+
+https://stackoverflow.com/questions/6507631/linking-to-a-kernel-module-a-precompiled-object-fil://stackoverflow.com/questions/6507631/linking-to-a-kernel-module-a-precompiled-object-file
 
 
 
