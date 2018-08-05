@@ -90,6 +90,74 @@ static u32 mmu_walk_ass(u32 vaddr)
 }
 */
 
+/**
+  Based on the Intel Software Developer Manual, 
+  Volume 3: Systems Programming,
+  Chapter 4 Paging - 4.4 PAE Paging
+  Section 4.4.2
+  */
+
+static u32* get_pde_addr(u32 pdpte, u32 vaddr)
+{
+    // PDE location = bits 51:12 are from PDPTEi, bits 11:3 are bits 29:21 of the linear address
+    u32 virt_part = ((vaddr & 0x3fe00000) >> 21) << 3;
+    u32 entry_part = pdpte & 0xfffff000; 
+    return entry_part + virt_part - 0x40000000;
+}
+
+
+static u64 mmu_walk_pae(u32 vaddr)
+{
+    struct task_struct* proc = current;
+    struct mm_struct* mm = proc->mm;
+    pgd_t* pdpte_table = mm->pgd;
+    
+    // PDPTE selection
+    // virt addr bits 31:30 select the PDPTEi
+    u32 pdpte_index = (vaddr & 0xC0000000) >> 30;
+    u32 pdpte = *(u32*)(pdpte_table + pdpte_index*8);
+    // inspect the P flag (bit 0)
+    if(!(pdpte & 0x1)) {
+        printk("PDPTE%u not a mapping\n", pdpte_index);
+        return NULL;
+    }
+    u32* pde_addr = get_pde_addr(pdpte, vaddr);
+    u32  pde = *pde_addr;
+    if(!(pde & 0x1)) {
+        printk("PDE: %p contains: %x is not a mapping.\n", pde_addr, pde);
+    }
+    if(pde & 0x80) {
+        printk("PDE: %p contain : %x is mapping a 2MB page.\n", pde_addr, pde);
+        return (pde & 0x000fffffffe00000) | (vaddr & 0x001fffff);
+    }
+
+    u32 pte_table_addr = (pde & 0xfffff000) + 0xc0000000;
+    u32 pte_index = ((vaddr & 0x1ff000) >> 12);
+    u64* pte_addr = (u64*)(pte_table_addr + (pte_index * 8));
+    u64  pte = *pte_addr;
+    if(!(pte & 0x1)) {
+        printk("PTE not a mapping, PTE table start: %x, index: %x, pte_addr: %p, pte: %llx", 
+                                    pte_table_addr, pte_index, pte_addr, pte);
+        return NULL;
+    }
+
+    char* ptable = (char*)pte_table_addr;
+    printk("[Debug] PTE(%p) Dump\n", ptable);
+    printk("[task:%s] %p:%02x %p:%02x %p:%02x %p:%02x\n", proc->comm, ptable,
+                *(ptable + 0), ptable+1, *(ptable+1), ptable+2, *(ptable+2),
+                ptable+3, *(ptable+3));
+    printk("[Debug] Dump Virtual Address\n");
+    printk("===============================");
+    printk((char*)vaddr);
+    printk("===============================");
+
+    // final physical
+    return (pte & 0x000ffffffffff000) | (vaddr & 0xfff);
+
+}
+
+
+
 static u32 mmu_walk(u32 vaddr)
 {
     struct task_struct* proc = current;
@@ -101,21 +169,25 @@ static u32 mmu_walk(u32 vaddr)
     pte_t  pte;
 
     pgd = pgd_offset(mm, vaddr);
+    printk("pgd: %llx\n", pgd);
     if (pgd_none_or_clear_bad(pgd)) {
         printk("[softmmu] - PGD not present of addr: %p\n", vaddr);
         goto out;
     }
     pud = pud_offset(pgd, vaddr);
+    printk("pud: %llx\n", pud);
     if (pud_none(*pud)) {
         printk("[softmmu] - PUD not present of addr: %p\n", vaddr);
         goto out;
     }
     pmd = pmd_offset(pud, vaddr);
+    printk("pmd: %llx\n", pmd);
     if (pmd_none(*pmd)) {
         printk("[softmmu] - PMD not present of addr: %p\n", vaddr);
         goto out;
     }
     ptep = pte_offset_map(pmd, vaddr);
+    printk("ptep: %llx\n", ptep);
     if(pte_none(*ptep)) {
         printk("[softmmu] - PTE not present of addr: %p\n", vaddr);
         goto out;
@@ -136,15 +208,16 @@ static ssize_t mmu_read(struct file *file, char __user *buf, size_t count,
                         loff_t *ppos)
 {
    u32 virt_page = virt_addr & 0xfffff000;
-   u32 phys_page = mmu_walk(virt_page);
-   u32 offset = virt_addr & 0xfff;
-   u32 phys_addr = phys_page + offset;
-   printk("[softmmu] - Virt addr: (%p) ---> Phys address (%p)\n", virt_addr, phys_addr);
+   //u64 phys_page = mmu_walk(virt_page);
+   //u32 offset = virt_addr & 0xfff;
+   //u64 phys_addr = phys_page + offset;
+   //printk("[softmmu] - Virt addr: (%p) ---> Phys address (%p)\n", virt_addr, phys_addr);
    //if( (phys_addr & 0xfff) != offset) {
    //    printk("[softmmu] - Phys offset not equal to virt offset(%x) - BUG\n", offset);
 //   }
 // mmu_walk_ass(virt_page);
-   page_walk(virt_page);
+   u64 phys_addr = mmu_walk_pae(virt_addr);
+   phys_addr = page_walk(virt_page);
    return 4;
 }
 
