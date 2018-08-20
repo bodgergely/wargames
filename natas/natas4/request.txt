@@ -1,0 +1,6 @@
+GET /index.php HTTP/1.1
+Host: natas4.natas.labs.overthewire.org
+Authorization: Basic bmF0YXM0Olo5dGtSa1dtcHQ5UXI3WHJSNWpXUmtnT1U5MDFzd0Va
+Accept: */*
+
+
