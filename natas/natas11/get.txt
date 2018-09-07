@@ -1,0 +1,13 @@
+GET / HTTP/1.1
+Host: natas11.natas.labs.overthewire.org
+Connection: keep-alive
+Cache-Control: max-age=0
+Authorization: Basic bmF0YXMxMTpVODJxNVRDTU1ROXh1Rm9JM2RZWDYxczdPWkQ5SktvSw==
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Cookie: __cfduid=d6c410b0250727b1a0cdc574dc43602d51526478824; __utmz=176859643.1526478824.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=176859643.1755896595.1526478824.1534786462.1535207899.73; __utmc=176859643; __utmt=1; __utmb=176859643.18.10.1535207899; data=ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw%3D
+
+

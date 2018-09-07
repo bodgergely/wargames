@@ -1,0 +1,40 @@
+ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=
+
+
+#ffffff -> data=ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=
+#fffffe -> data=ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFdaAw=
+#ffffef -> data=ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxJeaAw=
+
+
+xor key ==> "qw8J"
+
+
+In [66]: cookie
+Out[66]: '{"showpassword":"yes","bgcolor":"#ffffff"}'
+
+In [169]: def xor_encrypt(data, key):
+     ...:     res = ''
+     ...:     for i in range(len(data)):
+     ...:         res+= chr(ord(data[i]) ^ ord(key[i % len(key)]))
+     ...:     return res
+     ...:
+
+
+encr = xor_encrypt(cookie, "qw8J")
+
+In [168]: xor_encrypt(cookie, key)
+Out[168]: '\nUK"\x1e\x00H+\x02\x04O%\x03\x13\x1apS\x0e]9S[\x1a(\x16\x14W&\x1e\x05\x1apST^,\x17\x11^,S\n')]"'
+
+final = base64.encodestring(encr)
+
+ base64.encodestring(encr)
+Out[172]: 'ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK\n'
+
+
+
+Try to replace the \n with %0A just like you have spaces replaced with %20.
+
+So the '\n' should be replaced with %0A.
+
+
+Cookie: ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK%0A

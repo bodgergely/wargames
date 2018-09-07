@@ -1,2 +1,2 @@
-alias e='vim exploit.c'
-alias cop='cat ./exploit.c | cs'
+alias e='vim exploit_arm.c'
+alias cop='cat ./exploit_arm.c | cs'

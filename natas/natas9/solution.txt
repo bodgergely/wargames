@@ -1,0 +1,3 @@
+passthru function does not esapce the shell commands in php
+
+Exploit it.

@@ -1,0 +1,2 @@
+alias e='vi h.sh && ./h.sh'
+

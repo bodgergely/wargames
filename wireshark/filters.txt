@@ -1,0 +1,2 @@
+ip.addr == 192.30.253.112 && ssl.record.version == 0x0301   // this will only filter the TLSv1.2 protocols (SSL communication)
+

@@ -1,0 +1,14 @@
+0x804973c
+
+08049728 <_GLOBAL_OFFSET_TABLE_>:
+ 8049728:       3c 96                   cmp    al,0x96
+ 804972a:       04 08                   add    al,0x8
+        ...
+ 8049734:       06                      push   es
+ 8049735:       83 04 08 16             add    DWORD PTR [eax+ecx*1],0x16
+ 8049739:       83 04 08 26             add    DWORD PTR [eax+ecx*1],0x26
+ 804973d:       83 04 08 36             add    DWORD PTR [eax+ecx*1],0x36
+ 8049741:       83                      .byte 0x83
+ 8049742:       04 08                   add    al,0x8
+
+

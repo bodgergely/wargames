@@ -1,0 +1,11 @@
+set number
+set pastetoggle=<F3>
+nnoremap ; :
+nnoremap : ;
+c>
+c>
+map vv 0
+map nn <S-$>
+map f y
+set tabstop=4
+set shiftwidth=4

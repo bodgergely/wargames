@@ -1,0 +1,17 @@
+POST /index.php HTTP/1.1
+Host: natas6.natas.labs.overthewire.org
+Connection: keep-alive
+Content-Length: 40
+Cache-Control: max-age=0
+Authorization: Basic bmF0YXM2OmFHb1k0cTJEYzZNZ0RxNG9MNFl0b0t0eUFnOVBlSGEx
+Origin: http://natas6.natas.labs.overthewire.org
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://natas6.natas.labs.overthewire.org/index.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Cookie: __cfduid=d6c410b0250727b1a0cdc574dc43602d51526478824; __utmz=176859643.1526478824.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmc=176859643; __utma=176859643.1755896595.1526478824.1534727391.1534786462.72
+
+secret=FOEIUWGHFEEUHOFUOIU&submit=Submit

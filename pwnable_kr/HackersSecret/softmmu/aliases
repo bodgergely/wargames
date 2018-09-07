@@ -1,0 +1,3 @@
+alias e='vim query.sh ; ./query.sh ; cop'
+alias cop='cat query.sh | cs'
+

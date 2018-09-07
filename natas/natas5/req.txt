@@ -1,0 +1,12 @@
+GET /index.php HTTP/1.1
+Host: natas5.natas.labs.overthewire.org
+Connection: keep-alive
+Authorization: Basic bmF0YXM1OmlYNklPZm1wTjdBWU9RR1B3dG4zZlhwYmFKVkpjSGZx
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Cookie: __cfduid=d6c410b0250727b1a0cdc574dc43602d51526478824; __utmz=176859643.1526478824.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmc=176859643; __utma=176859643.1755896595.1526478824.1534727391.1534786462.72; __utmb=176859643.1.10.1534786462; loggedin=1
+
+

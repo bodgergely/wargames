@@ -1,0 +1,2 @@
+export IGNOREEOF=10
+cat /home/jozsi/README.txt
