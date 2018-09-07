@@ -1,0 +1,19 @@
+0040A049: start of unpacker code execution
+
+This unpacker will unpack:
+	- 401000 - 405000: to be unpacked
+	- 406000 - 409000: to be unpacked
+
+After unpacking the mem regions and loading the kernel32.dll functions into a table we jump to the decoded entry point.
+
+40A1FB jumps to 401150
+401150 entry point.
+
+
+
+401000 is the Windows loop. This is where we set up the callback to messages.
+
+Our callback is at 401110.
+
+
+The original entry point is at 00401150 and that is our solution!
