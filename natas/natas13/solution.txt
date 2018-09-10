@@ -1,0 +1,11 @@
+
+Since the content is checked by exif_imagetype we need to put 12 bytes of image
+signature before the html+php code payload.
+By looking at the php interpreter source code of the metnioned function we
+can see it is checking the first 12 bytes of the file and decides if the file is image or not
+based on that.
+
+
+1) have .php the extension of the random gen filename
+2) from a random jpg file grab the first 12 bytes and put it before our html+php payload
+
