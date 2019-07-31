@@ -1,3 +1,10 @@
+Good tutorial
+=============
+https://www.staticshin.com/programming/definitely-an-open-resty-guide/#why_openresty
+
+
+
+
 Interesting functions
 =====================
 ngx_worker_process_cycle - main worker loop
