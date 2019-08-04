@@ -1,0 +1,32 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+    # Override the global default and scrape targets from this job every 5 seconds.
+  - job_name: 'example-random'
+    scrape_interval: 5s
+    
+    static_configs:
+        - targets: ['localhost:8080', 'localhost:8081']
+          labels:
+            group: 'production'
+
+        - targets: ['localhost:8082']
+          labels:
+            group: 'canary'
+
+  - job_name: 'prom-go-example'
+    scrape_interval: 1s
+
+    static_configs:
+        - targets: ['localhost:2112']
+          labels:
+              group: 'dev'
