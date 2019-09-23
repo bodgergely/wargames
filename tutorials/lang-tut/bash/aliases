@@ -1,0 +1,21 @@
+fname=/tmp/test.sh
+function new()
+{
+   gen_bash_file $fname
+}
+
+alias e='vim $fname'
+alias r='bash $fname'
+alias c='echo "" > $fname'
+
+
+
+function tmp_new()
+{
+    f=`mktemp`
+    gen_bash_file $f
+    echo Filename: $f
+    echo $f | cs    # copy to clipboard the filename
+    echo --------------------------------------
+    $f
+}
