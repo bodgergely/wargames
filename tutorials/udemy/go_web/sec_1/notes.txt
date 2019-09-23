@@ -1,0 +1,8 @@
+
+2007 work on Go started.
+
+It was written to exploit multiple cores.
+
+Static typing + Garbage collection
+
+Credentials of Go is nice, Google stuff + Rob Pike
