@@ -1,0 +1,6 @@
+*
+!.gitignore
+!*.lua
+!*.h
+!*.c
+!Makefile
