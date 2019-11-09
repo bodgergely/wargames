@@ -1,0 +1,131 @@
+# Nmap 7.70SVN scan initiated Sat Nov  9 18:48:44 2019 as: nmap -v -sC -sV -oA nmap 159.65.82.237
+Nmap scan report for 159.65.82.237
+Host is up (0.066s latency).
+Not shown: 986 closed ports
+PORT     STATE SERVICE  VERSION
+21/tcp   open  ftp      Pure-FTPd
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-02T11:49:05
+| Not valid after:  2020-11-01T11:49:05
+| MD5:   7837 8448 0609 d9c7 db3f cdbb b6ec b93d
+|_SHA-1: a444 c421 cf80 99a2 9a5f af3a 9771 34ed 032e 65bc
+22/tcp   open  ssh      OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 cf:dc:c5:b2:c3:26:45:83:4c:c0:49:5e:46:7a:05:e1 (RSA)
+|   256 25:c2:78:6a:be:3a:1f:b3:2b:a9:96:47:e4:78:6e:22 (ECDSA)
+|_  256 66:d1:bf:bc:c6:65:af:2b:a0:76:99:37:c5:b7:5c:13 (ED25519)
+25/tcp   open  smtp?
+|_smtp-commands: Couldn't establish connection on port 25
+53/tcp   open  domain   PowerDNS Authoritative Server 4.1.10
+| dns-nsid: 
+|   NSID: vps.racunan.com (7670732e726163756e616e2e636f6d)
+|   id.server: vps.racunan.com
+|_  bind.version: PowerDNS Authoritative Server 4.1.10 (built Sep  4 2019 10:30:59 by root@rpmbuild-64-centos-7.dev.cpanel.net)
+80/tcp   open  ssl/http Apache httpd
+| http-methods: 
+|_  Supported Methods: GET POST OPTIONS HEAD
+|_http-server-header: Apache
+|_http-title: Site doesn't have a title (text/html).
+110/tcp  open  pop3     Dovecot pop3d
+|_pop3-capabilities: AUTH-RESP-CODE SASL(PLAIN LOGIN) CAPA TOP PIPELINING USER UIDL RESP-CODES STLS
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-02T11:49:05
+| Not valid after:  2020-11-01T11:49:05
+| MD5:   cf9c bc33 d5ec 0ca7 8249 8148 c727 9e85
+|_SHA-1: 2245 3b51 707f 01c7 03ef 9720 bca5 2ff4 1a34 bca6
+111/tcp  open  rpcbind  2-4 (RPC #100000)
+| rpcinfo: 
+|   program version   port/proto  service
+|   100000  2,3,4        111/tcp  rpcbind
+|_  100000  2,3,4        111/udp  rpcbind
+143/tcp  open  imap     Dovecot imapd
+|_imap-capabilities: STARTTLS post-login Pre-login AUTH=LOGINA0001 LITERAL+ IDLE NAMESPACE ENABLE AUTH=PLAIN have more listed LOGIN-REFERRALS IMAP4rev1 SASL-IR OK capabilities ID
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-02T11:49:05
+| Not valid after:  2020-11-01T11:49:05
+| MD5:   cf9c bc33 d5ec 0ca7 8249 8148 c727 9e85
+|_SHA-1: 2245 3b51 707f 01c7 03ef 9720 bca5 2ff4 1a34 bca6
+443/tcp  open  ssl/http Apache httpd
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+| ssl-cert: Subject: commonName=secure-nertfllx.com
+| Subject Alternative Name: DNS:secure-nertfllx.com, DNS:www.secure-nertfllx.com
+| Issuer: commonName=Let's Encrypt Authority X3/organizationName=Let's Encrypt/countryName=US
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-02T11:03:47
+| Not valid after:  2020-01-31T11:03:47
+| MD5:   44b9 0250 78a8 6387 3b9c edfb 34f6 eb99
+|_SHA-1: f72b 044b 1b95 efca 5e10 17e8 e014 8d06 e75c ce11
+465/tcp  open  ssl/smtp Exim smtpd 4.92
+| smtp-commands: vps.racunan.com Hello 79-71-167-223.dynamic.dsl.as9105.com [79.71.167.223], SIZE 52428800, 8BITMIME, PIPELINING, AUTH PLAIN LOGIN, HELP, 
+|_ Commands supported: AUTH HELO EHLO MAIL RCPT DATA BDAT NOOP QUIT RSET HELP 
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-05T22:19:46
+| Not valid after:  2020-11-04T22:19:46
+| MD5:   fefd d0f9 d0a0 ffc3 c8a9 6b39 bc0d 2c0b
+|_SHA-1: b4fe 3ed4 be6c 5f93 0afe 5544 d080 d1a5 f166 d555
+587/tcp  open  smtp     Exim smtpd 4.92
+| smtp-commands: vps.racunan.com Hello 79-71-167-223.dynamic.dsl.as9105.com [79.71.167.223], SIZE 52428800, 8BITMIME, PIPELINING, STARTTLS, HELP, 
+|_ Commands supported: AUTH STARTTLS HELO EHLO MAIL RCPT DATA BDAT NOOP QUIT RSET HELP 
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-05T22:19:46
+| Not valid after:  2020-11-04T22:19:46
+| MD5:   fefd d0f9 d0a0 ffc3 c8a9 6b39 bc0d 2c0b
+|_SHA-1: b4fe 3ed4 be6c 5f93 0afe 5544 d080 d1a5 f166 d555
+993/tcp  open  imaps?
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-02T11:49:05
+| Not valid after:  2020-11-01T11:49:05
+| MD5:   cf9c bc33 d5ec 0ca7 8249 8148 c727 9e85
+|_SHA-1: 2245 3b51 707f 01c7 03ef 9720 bca5 2ff4 1a34 bca6
+995/tcp  open  pop3s?
+|_pop3-capabilities: SASL(PLAIN LOGIN) USER AUTH-RESP-CODE RESP-CODES PIPELINING UIDL CAPA TOP
+| ssl-cert: Subject: commonName=vps.racunan.com
+| Subject Alternative Name: DNS:vps.racunan.com
+| Issuer: commonName=vps.racunan.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-02T11:49:05
+| Not valid after:  2020-11-01T11:49:05
+| MD5:   cf9c bc33 d5ec 0ca7 8249 8148 c727 9e85
+|_SHA-1: 2245 3b51 707f 01c7 03ef 9720 bca5 2ff4 1a34 bca6
+3306/tcp open  mysql    MySQL (unauthorized)
+Service Info: Host: vps.racunan.com
+
+Read data files from: /usr/local/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov  9 18:53:04 2019 -- 1 IP address (1 host up) scanned in 259.71 seconds
