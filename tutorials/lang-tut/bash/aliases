@@ -4,6 +4,7 @@ function new()
    gen_bash_file $fname
 }
 
+alias cdbash='cd ~/tutorials/lang-tut/bash'
 alias e='vim $fname'
 alias r='bash $fname'
 alias c='echo "" > $fname'
