@@ -1,0 +1,19 @@
+{
+    "query":
+        "query {
+          user(login: \"bodgergely\") {
+            createdAt
+            issueComments(first: 40) {
+              edges {
+                node {
+                  repository {
+                    name
+                  }
+                  bodyText
+                  createdAt
+                }
+              }
+            }
+          }
+        }"
+}
