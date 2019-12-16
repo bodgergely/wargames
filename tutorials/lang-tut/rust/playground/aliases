@@ -1,0 +1,3 @@
+alias r='./target/debug/playground'
+alias b='cargo build'
+alias rb='cargo build && r'
