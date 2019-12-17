@@ -1,1 +1,2 @@
-source venv/bin/activate
+#/bin/bash
+echo "source venv/bin/activate" | xclip -selection clipboard
