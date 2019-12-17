@@ -1,4 +1,4 @@
-app.db
+app.db*
 venv
 **/__pycache__
 logs/
