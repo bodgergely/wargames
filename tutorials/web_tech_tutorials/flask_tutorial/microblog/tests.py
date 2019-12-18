@@ -41,6 +41,12 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(u2.followers.count(), 1)
         self.assertEqual(u2.followers.first().username, 'john')
 
+        # make sure we can not follow someone we are already following
+        u1.follow(u2)
+        db.session.commit()
+        self.assertEqual(u1.followed.count(), 1)
+        self.assertEqual(u1.followed.first().username, 'susan')
+
         u1.unfollow(u2)
         db.session.commit()
         self.assertFalse(u1.is_following(u2))
