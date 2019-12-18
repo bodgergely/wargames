@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "venv/bin/python",
+    "sqltools.connections": [{
+        "database": "/home/geri/flask_tutorial/microblog/app.db",
+        "dialect": "SQLite",
+        "name": "microblog"
+    }],
+    "sqltools.useNodeRuntime": true,
+    "restructuredtext.confPath": "",
+    "gitlens.hovers.enabled": false
+}
