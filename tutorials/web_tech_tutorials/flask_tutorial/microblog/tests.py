@@ -41,11 +41,12 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(u2.followers.count(), 1)
         self.assertEqual(u2.followers.first().username, 'john')
 
-        # make sure we can not follow someone we are already following
+        # BEGIN make sure we can not follow someone we are already following
         u1.follow(u2)
         db.session.commit()
         self.assertEqual(u1.followed.count(), 1)
         self.assertEqual(u1.followed.first().username, 'susan')
+        # END
 
         u1.unfollow(u2)
         db.session.commit()
@@ -90,6 +91,9 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(f2, [p2, p3])
         self.assertEqual(f3, [p3, p4])
         self.assertEqual(f4, [p4])
+
+
+        
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
