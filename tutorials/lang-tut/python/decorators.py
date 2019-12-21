@@ -1,10 +1,12 @@
-def bubu(names):
-    for name in names:
-        print(name)
-    return fala 
 
-@bubu(['Geri', 'jezus'])
-class Haha():
-    pass
+def decorator(orig_func, *args):
+    def printer(*args):
+        print(args)
+        return orig_func()
+    return printer
 
-h = Haha()
+@decorator("Haha")
+def play():
+    print("play")
+
+play()
