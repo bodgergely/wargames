@@ -1,0 +1,4 @@
+alias conf='vim ./conf/nginx.conf'
+alias r='./reload.sh'
+alias le='less ./nginx/logs/error.log'
+alias la='less ./nginx/logs/access.log'
