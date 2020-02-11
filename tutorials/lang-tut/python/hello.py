@@ -1,36 +1,28 @@
-class Base(object):
-    def __init__(self, *args, **kwargs): pass
+class Celsius(object):
+    def __init__(self, value=0.0):
+        self.value = float(value)
+    def __get__(self, instance, owner):
+        return instance.temp if instance.temp else self.value
+    def __set__(self, instance, value):
+        instance.temp = float(value)
 
 
-class A(Base):
-    def __init__(self, *args, **kwargs):
-        print("A")
-        super(A, self).__init__(*args, **kwargs)
+class Temperature(object):
+    celsius = Celsius()
+    def __init__(self):
+        self.temp = None
 
 
-class B(Base):
-    def __init__(self, *args, **kwargs):
-        print("B")
-        super(B, self).__init__(*args, **kwargs)
+temp = Temperature()
+print(temp.celsius)
+temp.celsius = 9
 
+temp2 = Temperature()
+print(temp2.celsius)
+temp2.celsius = 23
 
-class C(A):
-    def __init__(self, arg, *args, **kwargs):
-        print("C", "arg=", arg)
-        super(C, self).__init__(arg, *args, **kwargs)
+print(temp.celsius)
+print(temp2.celsius)
 
-
-class D(B):
-    def __init__(self, arg, *args, **kwargs):
-        print("D", "arg=", arg)
-        super(D, self).__init__(arg, *args, **kwargs)
-
-
-class E(C, D):
-    def __init__(self, arg, *args, **kwargs):
-        print("E", "arg=", arg)
-        super(E, self).__init__(arg, *args, **kwargs)
-
-
-print("MRO:", [x.__name__ for x in E.__mro__])
-E(10)
+def function(name):
+    return jozska
