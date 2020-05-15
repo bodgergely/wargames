@@ -1,5 +1,4 @@
+source ~/peda/peda.py
 set disassembly-flavor intel
 b _start
-run
-layout asm
-focus cmd
+start

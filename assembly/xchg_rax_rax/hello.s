@@ -8,9 +8,10 @@ section .text
 	GLOBAL _start 
 
 _start:
-.loop:
- 	xadd 	rax, rdx
-	loop 	.loop
+	neg		rax
+	sbb		rax, rax
+	neg 	rax
+
 
 
 	;mov eax,4            ; 'write' system call = 4
