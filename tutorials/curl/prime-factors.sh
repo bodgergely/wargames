@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+NUM=$1
+curl -w '@curl-timing-format.txt' -s -o /dev/stdout 'https://www.calculatorsoup.com/calculators/math/prime-factors.php' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-GB,en;q=0.5' --compressed -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: https://www.calculatorsoup.com' -H 'Connection: keep-alive' -H 'Referer: https://www.calculatorsoup.com/calculators/math/prime-factors.php' -H 'Upgrade-Insecure-Requests: 1' -H 'DNT: 1' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' --data "x=$NUM&action=solve&page_id=MTU3ODE3MjQ3MQ%3D%3D"
