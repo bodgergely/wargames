@@ -1,0 +1,5 @@
+*.o
+peda*.txt
+.gdb_history
+hello
+example/*

@@ -1,0 +1,4 @@
+alias e='vim hello.s'
+alias b='./assemble.sh && ./link.sh'
+alias r='./debug.sh'
+
