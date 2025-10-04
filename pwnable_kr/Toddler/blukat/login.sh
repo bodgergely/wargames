@@ -1,1 +1,1 @@
-ssh blukat@pwnable.kr -p2222
+sshpass -p `cat password` ssh blukat@pwnable.kr -p2222
