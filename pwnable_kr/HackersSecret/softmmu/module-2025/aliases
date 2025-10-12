@@ -1,0 +1,2 @@
+alias m='make 2> md; vim md'
+alias e='vim softmmu.c'

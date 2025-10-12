@@ -7,8 +7,246 @@ Download: [custom softmmu kernel code](http://pwnable.kr/bin/softmmu)
 
 The password is the flag contents we obtained by solving the syscall challange.
 
+# Initial knowledge
 
-## Writeup
+!!!!!!!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Things changed in 2025. Now the CTF server is a host server and after ssh-ing into it
+you still need to get inside the VM that is running softmmu.
+
+Now the softmmu module seems to be reworked, it outputs PGD instead of PTE!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+Connect to the QEMU running the kernel via the service:
+nc 0 9900
+
+Or if the service is not running:
+nc 0 2000
+
+From here on, everthing relates to the QEMU instance.
+
+This is classic "nested shell" situation since.
+
+# How to get a file (/softmmu.ko) from this Qemu instance back to the host machine, pwnable.kr (softmmu@pwnable.kr)?
+
+This is called "pivoted file extraction".
+Like when you're inside a QEMU guest (BusyBox environment) that's running inside a remote host you SSH'd into.
+
+## Setup
+
+you (local PC)
+   ↓ ssh
+host machine (you can use `scp` / `ssh` here)
+   ↓ nc 0 9900
+QEMU guest (BusyBox, i686)
+
+You’re inside the guest via a netcat shell (nc 0 9900), and you can read /softmmu.ko.
+You want to transfer it up — from the QEMU guest → host machine → your local PC.
+
+
+
+
+
+
+
+
+
+
+
+
+This is coming from the kernel logs:
+
+[+] Loading x86 PAE MMU emulator
+[+] Write the virtual address to /proc/softmmu
+[+] You can obtain it's physical address by reading /proc/softmmu
+[+] i.e. echo -ne '\x00\x80\x04\x08' > /proc/softmmu; hexdump -C /proc/softmmu
+[+] Let the kernel exploit begin :)
+
+
+
+
+Softmmu machine inspection
+==========================
+
+/ $ uname -a
+uname -a
+Linux (none) 3.7.1 #1 SMP Mon Dec 23 06:07:19 PST 2013 i686 GNU/Linux
+
+The above means (i686) that it is a 32 bit kernel.
+
+
+/ $ cat /proc/cmdline
+cat /proc/cmdline
+root=/dev/ram rw console=ttyS0 rdinit=/bin/ash
+/ $ id;whoami
+id;whoami
+uid=1000 gid=1000 groups=1000
+whoami: unknown uid 1000
+/ $ cat /proc/cpuinfo
+cat /proc/cpuinfo
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 6
+model name      : QEMU Virtual CPU version 2.5+
+stepping        : 3
+cpu MHz         : 2200.062
+cache size      : 4096 KB
+fdiv_bug        : no
+hlt_bug         : no
+f00f_bug        : no
+coma_bug        : no
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 4
+wp              : yes
+flags           : fpu de pse tsc msr pae mce cx8 apic sep pge cmov mmx fxsr sse sse2 pni hypervisor
+bogomips        : 4400.12
+clflush size    : 32
+cache_alignment : 32
+address sizes   : 36 bits physical, 32 bits virtual
+power management:
+
+/ $ cat /proc/modules | head
+cat /proc/modules | head
+softmmu 12608 0 - Live 0xc480f000 (OF)
+
+/ $ lsmod
+softmmu 12608 0 - Live 0xc480f000 (OF)
+
+/ $ cat /proc/iomem | head
+cat /proc/iomem | head
+00000000-0000ffff : reserved
+00010000-0009fbff : System RAM
+0009fc00-0009ffff : reserved
+000a0000-000bffff : PCI Bus 0000:00
+  000a0000-000bffff : Video RAM area
+000c0000-000c95ff : Video ROM
+000c9800-000ca5ff : Adapter ROM
+000ca800-000cabff : Adapter ROM
+000f0000-000fffff : reserved
+  000f0000-000fffff : System ROM
+
+/ $ mount
+mount
+rootfs on / type rootfs (rw)
+/dev/root on / type ext4 (rw,relatime)
+devtmpfs on /dev type devtmpfs (rw,relatime,size=24632k,nr_inodes=6158,mode=755)
+none on /proc type proc (rw,relatime)
+
+Mitigations:
+/ $ grep -iE 'kaslr|smep|smap|nx' /proc/cpuinfo /proc/cmdline 2>/dev/null
+grep -iE 'kaslr|smep|smap|nx' /proc/cpuinfo /proc/cmdline 2>/dev/null
+/ $
+
+No mitigation is present.
+
+
+/ $ ls -l /proc/* 2>/dev/null | head
+ls -l /proc/* 2>/dev/null | head
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/buddyinfo
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/cgroups
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/cmdline
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/consoles
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/cpuinfo
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/crypto
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/devices
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/diskstats
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/dma
+-r--r--r--    1 0        0                0 Oct 11 20:46 /proc/execdomains
+
+
+
+
+
+/ $ echo -ne '\x00\x80\x04\x08' > /proc/softmmu; hexdump -C /proc/softmmu
+echo -ne '\x00\x80\x04\x08' > /proc/softmmu; hexdump -C /proc/softmmu
+[   40.944223] virtual address set to 8048000
+[   41.050955] [Debug] PGD(c2d9b000) Dump
+[   41.054473] [task:hexdump] c2d9b000:00 c2d9b001:00 c2d9b002:00 c2d9b003:00
+[   41.054662] [Debug] Dump Virtual Address
+[   41.054783]
+[   41.054783] ===============================
+[   41.055083] ELF
+===============================
+[   41.056105] [Debug] PGD(c2d9b000) Dump
+[   41.056354] [task:hexdump] c2d9b000:00 c2d9b001:00 c2d9b002:00 c2d9b003:00
+[   41.056572] [Debug] Dump Virtual Address
+[   41.056685]
+[   41.056685] ===============================
+[   41.056859] ELF
+===============================
+[   41.057247] [Debug] PGD(c2d9b000) Dump
+[   41.057353] [task:hexdump] c2d9b000:00 c2d9b001:00 c2d9b002:00 c2d9b003:00
+[   41.057519] [Debug] Dump Virtual Address
+[   41.057649]
+[   41.057649] ===============================
+[   41.057822] ELF
+===============================
+[   41.058185] [Debug] PGD(c2d9b000) Dump
+[   41.058290] [task:hexdump] c2d9b000:00 c2d9b001:00 c2d9b002:00 c2d9b003:00
+[   41.058456] [Debug] Dump Virtual Address
+[   41.058572]
+[   41.058572] ===============================
+[   41.058743] ELF
+===============================
+00000000  00 20 8e 01                                       |. ..|
+00000004
+
+
+The above also shows the dmesg output, the actual hexdump are the 4 bytes: "00 20 8e 01"
+The dmesg shows the contents of the string from the memory where the phys memory is.
+For 0x018e2000 it is "ELF" - basically the image of the executable that does the "reading" - "hexdump" in the above case.
+"cat" if we read /proc/softmmu with cat.
+
+
+echo -ne '\x00\x80\x04\x08'
+
+
+Aliases
+=======
+
+writevirt() { echo -ne $1 > /proc/softmmu; }
+readvirt() { cat /proc/softmmu | hexdump -C; }
+rw() { writevirt $1; readvirt; }
+
+Define the whole thing on a single linej
+writevirt() { echo -ne $1 > /proc/softmmu; }; readvirt() { cat /proc/softmmu | hexdump -C; }; rw() { writevirt $1; readvirt; }
+
+Scratchpad
+==========
+
+rw '\x00\x80\x04\x08' 
+
+If you write some bogus virt memory:
+
+If you write less or more than 4 bytes:
+[ 4395.544093] write 4byte virtual address
+
+/ $ rw hell
+rw hell
+[ 4229.290826] virtual address set to 6c6c6568
+[ 4229.307546] PD64 entry not present 0
+[ 4229.307856] PD64 entry not present 0
+[ 4229.308822] PD64 entry not present 0
+
+
+
+
+
+
+
+
+
+
+
+
+2018 - Old version
+==================
+
+## Writeup (2018)
 
 ### Flag file
 

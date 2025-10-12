@@ -1,0 +1,204 @@
+
+/ $ dmesg | tail -n 200
+dmesg | tail -n 200
+[    0.942111] pnp: PnP ACPI init
+[    0.942338] ACPI: bus type pnp registered
+[    0.943154] pnp 00:00: [bus 00-ff]
+[    0.943297] pnp 00:00: [io  0x0cf8-0x0cff]
+[    0.943366] pnp 00:00: [io  0x0000-0x0cf7 window]
+[    0.943386] pnp 00:00: [io  0x0d00-0xffff window]
+[    0.943485] pnp 00:00: [mem 0x000a0000-0x000bffff window]
+[    0.943517] pnp 00:00: [mem 0x04000000-0xfebfffff window]
+[    0.944280] pnp 00:00: Plug and Play ACPI device, IDs PNP0a03 (active)
+[    0.944642] pnp 00:01: [io  0x0070-0x0071]
+[    0.945191] pnp 00:01: [irq 8]
+[    0.945244] pnp 00:01: [io  0x0072-0x0077]
+[    0.945449] pnp 00:01: Plug and Play ACPI device, IDs PNP0b00 (active)
+[    0.945659] pnp 00:02: [io  0x0060]
+[    0.945676] pnp 00:02: [io  0x0064]
+[    0.945709] pnp 00:02: [irq 1]
+[    0.945937] pnp 00:02: Plug and Play ACPI device, IDs PNP0303 (active)
+[    0.946088] pnp 00:03: [irq 12]
+[    0.946311] pnp 00:03: Plug and Play ACPI device, IDs PNP0f13 (active)
+[    0.946613] pnp 00:04: [io  0x03f2-0x03f5]
+[    0.946630] pnp 00:04: [io  0x03f7]
+[    0.946660] pnp 00:04: [irq 6]
+[    0.946797] pnp 00:04: [dma 2]
+[    0.946989] pnp 00:04: Plug and Play ACPI device, IDs PNP0700 (active)
+[    0.947219] pnp 00:05: [io  0x0378-0x037f]
+[    0.947249] pnp 00:05: [irq 7]
+[    0.947425] pnp 00:05: Plug and Play ACPI device, IDs PNP0400 (active)
+[    0.947635] pnp 00:06: [io  0x03f8-0x03ff]
+[    0.947667] pnp 00:06: [irq 4]
+[    0.947826] pnp 00:06: Plug and Play ACPI device, IDs PNP0501 (active)
+[    0.948261] pnp 00:07: [io  0xafe0-0xafe3]
+[    0.948490] pnp 00:07: Plug and Play ACPI device, IDs PNP0a06 (active)
+[    0.948571] pnp 00:08: [io  0xae00-0xae13]
+[    0.948725] pnp 00:08: Plug and Play ACPI device, IDs PNP0a06 (active)
+[    0.948814] pnp 00:09: [io  0xaf00-0xaf1f]
+[    0.948978] pnp 00:09: Plug and Play ACPI device, IDs PNP0a06 (active)
+[    0.949689] pnp 00:0a: [mem 0xfed00000-0xfed003ff]
+[    0.949871] pnp 00:0a: Plug and Play ACPI device, IDs PNP0103 (active)
+[    0.950607] pnp: PnP ACPI: found 11 devices
+[    0.950762] ACPI: ACPI bus type pnp unregistered
+[    0.950897] PnPBIOS: Disabled by ACPI PNP
+[    1.003823] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7]
+[    1.003857] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff]
+[    1.003875] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff]
+[    1.003890] pci_bus 0000:00: resource 7 [mem 0x04000000-0xfebfffff]
+[    1.004570] NET: Registered protocol family 2
+[    1.008569] TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+[    1.008881] TCP bind hash table entries: 2048 (order: 2, 16384 bytes)
+[    1.009217] TCP: Hash tables configured (established 2048 bind 2048)
+[    1.009637] TCP: reno registered
+[    1.009862] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    1.010081] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    1.011956] NET: Registered protocol family 1
+[    1.012373] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    1.012533] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    1.012761] pci 0000:00:01.0: Activating ISA DMA hang workarounds
+[    1.012918] pci 0000:00:02.0: Boot video device
+[    1.013027] PCI: CLS 0 bytes, default 32
+[    1.016764] Trying to unpack rootfs image as initramfs...
+[    1.022407] rootfs image is not initramfs (junk in compressed archive); looks like an initrd
+[    1.050571] Freeing initrd memory: 4096k freed
+[    1.067874] Initialise module verification
+[    1.069423] audit: initializing netlink socket (disabled)
+[    1.070191] type=2000 audit(1760193793.068:1): initialized
+[    1.146061] HugeTLB registered 2 MB page size, pre-allocated 0 pages
+[    1.160455] VFS: Disk quotas dquot_6.5.2
+[    1.160993] Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+[    1.168406] fuse init (API version 7.20)
+[    1.169526] msgmni has been set to 104
+[    1.177707] Key type asymmetric registered
+[    1.177893] Asymmetric key parser 'x509' registered
+[    1.178449] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)
+[    1.179008] io scheduler noop registered
+[    1.179121] io scheduler deadline registered (default)
+[    1.179322] io scheduler cfq registered
+[    1.181515] pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+[    1.182513] pciehp: PCI Express Hot Plug Controller Driver version: 0.4
+[    1.183427] intel_idle: does not run on family 6 model 6
+[    1.185315] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    1.186006] ACPI: Power Button [PWRF]
+[    1.200815] GHES: HEST is not enabled!
+[    1.201114] isapnp: Scanning for PnP cards...
+[    1.565118] isapnp: No Plug & Play device found
+[    1.566473] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    1.589176] 00:06: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    1.600570] Linux agpgart interface v0.103
+[    1.615472] brd: module loaded
+[    1.622096] loop: module loaded
+[    1.624282] ata_piix 0000:00:01.1: version 2.13
+[    1.627470] ata_piix 0000:00:01.1: setting latency timer to 64
+[    1.653082] scsi0 : ata_piix
+[    1.656515] scsi1 : ata_piix
+[    1.657214] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc040 irq 14
+[    1.657353] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc048 irq 15
+[    1.670185] libphy: Fixed MDIO Bus: probed
+[    1.671356] tun: Universal TUN/TAP device driver, 1.6
+[    1.671448] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[    1.677742] PPP generic driver version 2.4.2
+[    1.680830] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.681413] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.681731] uhci_hcd: USB Universal Host Controller Interface driver
+[    1.683678] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    1.689032] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    1.689386] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    1.691626] mousedev: PS/2 mouse device common for all mice
+[    1.695547] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    1.697719] rtc_cmos 00:01: RTC can wake from S4
+[    1.702312] rtc_cmos 00:01: rtc core: registered rtc_cmos as rtc0
+[    1.703133] rtc0: alarms up to one day, 114 bytes nvram, hpet irqs
+[    1.705302] device-mapper: uevent: version 1.0.3
+[    1.706322] device-mapper: ioctl: 4.23.0-ioctl (2012-07-25) initialised: dm-devel@redhat.com
+[    1.706865] EISA: Probing bus 0 at eisa.0
+[    1.707055] EISA: Cannot allocate resource for mainboard
+[    1.707234] Cannot allocate resource for EISA slot 1
+[    1.707361] Cannot allocate resource for EISA slot 2
+[    1.707456] Cannot allocate resource for EISA slot 3
+[    1.707563] Cannot allocate resource for EISA slot 4
+[    1.707668] Cannot allocate resource for EISA slot 5
+[    1.707768] Cannot allocate resource for EISA slot 6
+[    1.707869] Cannot allocate resource for EISA slot 7
+[    1.707970] Cannot allocate resource for EISA slot 8
+[    1.708269] EISA: Detected 0 cards.
+[    1.709233] cpufreq-nforce2: No nForce2 chipset.
+[    1.709428] cpuidle: using governor ladder
+[    1.709564] cpuidle: using governor menu
+[    1.709792] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.709894] EFI Variables Facility v0.08 2004-May-17
+[    1.712700] ashmem: initialized
+[    1.717969] TCP: cubic registered
+[    1.719597] NET: Registered protocol family 10
+[    1.726648] NET: Registered protocol family 17
+[    1.727480] Key type dns_resolver registered
+[    1.728660] Using IPI No-Shortcut mode
+[    1.729808] Loading module verification certificates
+[    1.753848] MODSIGN: Loaded cert 'Magrathea: Glacier signing key: af26baf82a92b2e31d93ae3ecf1e7a7be0ee0889'
+[    1.755455] registered taskstats version 1
+[    1.765315] Key type trusted registered
+[    1.766771] Key type encrypted registered
+[    1.774828] rtc_cmos 00:01: setting system clock to 2025-10-11 14:43:14 UTC (1760193794)
+[    1.777400] BIOS EDD facility v0.16 2004-Jun-25, 0 devices found
+[    1.777538] EDD information not available.
+[    1.826913] ata2.01: NODEV after polling detection
+[    1.828558] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    1.830076] ata2.00: configured for MWDMA2
+[    1.841996] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    1.850168] sr0: scsi3-mmc drive: 4x/4x cd/rw xa/form2 tray
+[    1.850504] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    1.852757] sr 1:0:0:0: Attached scsi CD-ROM sr0
+[    1.854458] sr 1:0:0:0: Attached scsi generic sg0 type 5
+[    1.856529] md: Waiting for all devices to be available before autodetect
+[    1.856675] md: If you don't use raid, use raid=noautodetect
+[    1.861501] md: Autodetecting RAID arrays.
+[    1.861645] md: Scanned 0 and added 0 devices.
+[    1.861720] md: autorun ...
+[    1.861790] md: ... autorun DONE.
+[    1.865371] RAMDISK: ext2 filesystem found at block 0
+[    1.865721] RAMDISK: Loading 4096KiB [1 disk] into ram disk... done.
+[    2.076988] EXT4-fs (ram0): mounted filesystem without journal. Opts: (null)
+[    2.078182] VFS: Mounted root (ext4 filesystem) on device 1:0.
+[    2.080500] devtmpfs: mounted
+[    2.082300] Freeing unused kernel memory: 780k freed
+[    2.089396] Write protecting the kernel text: 6112k
+[    2.089671] Write protecting the kernel read-only data: 2456k
+[    2.144741] tsc: Refined TSC clocksource calibration: 2200.054 MHz
+[    2.145499] Switching to clocksource tsc
+[    2.237491] Disabling lock debugging due to kernel taint
+[    2.241881] [+] Loading x86 PAE MMU emulator
+[    2.242000] [+] Write the virtual address to /proc/softmmu
+[    2.242080] [+] You can obtain it's physical address by reading /proc/softmmu
+[    2.242198] [+] i.e. echo -ne '\x00\x80\x04\x08' > /proc/softmmu; hexdump -C /proc/softmmu
+[    2.242350] [+] Let the kernel exploit begin :)
+[  149.949748] virtual address set to 8048000
+[  175.849396] [Debug] PGD(c2ecb000) Dump
+[  175.850694] [task:hexdump] c2ecb000:00 c2ecb001:00 c2ecb002:00 c2ecb003:00
+[  175.850865] [Debug] Dump Virtual Address
+[  175.850975]
+[  175.850975] ===============================
+[  175.851250] ELF
+[  175.851250] ===============================
+[  175.852377] [Debug] PGD(c2ecb000) Dump
+[  175.852490] [task:hexdump] c2ecb000:00 c2ecb001:00 c2ecb002:00 c2ecb003:00
+[  175.852651] [Debug] Dump Virtual Address
+[  175.852751]
+[  175.852751] ===============================
+[  175.852912] ELF
+[  175.852912] ===============================
+[  175.853266] [Debug] PGD(c2ecb000) Dump
+[  175.853368] [task:hexdump] c2ecb000:00 c2ecb001:00 c2ecb002:00 c2ecb003:00
+[  175.853517] [Debug] Dump Virtual Address
+[  175.853631]
+[  175.853631] ===============================
+[  175.853788] ELF
+[  175.853788] ===============================
+[  175.854139] [Debug] PGD(c2ecb000) Dump
+[  175.854236] [task:hexdump] c2ecb000:00 c2ecb001:00 c2ecb002:00 c2ecb003:00
+[  175.854391] [Debug] Dump Virtual Address
+[  175.854495]
+[  175.854495] ===============================
+[  175.854665] ELF
+[  175.854665] ===============================
+
