@@ -224,8 +224,19 @@ static ssize_t mmu_read(struct file *file, char __user *buf, size_t count,
 static ssize_t mmu_write(struct file *file, const char __user *buf,
 						size_t count, loff_t *ppos)
 {
-    virt_addr = *(u32*)buf;
-    printk("[softmmu] - Virtual address has been set to: %p\n", virt_addr);
+    mcount(); // some kind of tracing
+    if (count != 4) {
+        printk("write 4byte virtual address\n");
+        return count;
+    }
+
+    _copy_from_user(&virt_addr, buf, 4);
+    if (virt_addr > 0x0BFFFFFFF) {
+        printk("You don't have permission for kernel address\n");
+        return 4;
+    }
+
+    printk("[softmmu] - Virtual address has been set to: %x\n", virt_addr);
     return count;
 }
 
